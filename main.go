@@ -2,9 +2,11 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"log"
 	"image/png"
 	"net/http"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -16,7 +18,17 @@ func main() {
 	http.HandleFunc("/qr/", func(w http.ResponseWriter, r *http.Request) {
 		// Get address
         url := r.URL.Path[len("/qr/"):]
+        // Fix issues with URLs missing the second slash of a protocol
+        if m, _ := regexp.MatchString(`:\/`, url); m == false {
+        	re := regexp.MustCompile(`:\/`)
+        	slice := re.Split(url, 2)
+        	slice[0] = slice[0] + string("/")
+        	fmt.Println(slice[0])
+        	fmt.Println(slice)
+        	url = strings.Join(slice, "")
+        }
 		// Generate QR
+    	fmt.Println(url)
 		qrCode, _ := qr.Encode(strings.ToUpper(url), qr.M, qr.Auto)
 		qrCode, _ = barcode.Scale(qrCode, 500, 500)
 
