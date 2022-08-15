@@ -59,6 +59,7 @@ func main() {
 		code, _ = barcode.Scale(code, 500, 500)
 		stdout(w, code)
 	})
+	// TODO: find out what's wrong with codabar scans
 	/*http.HandleFunc("/coda/", func(w http.ResponseWriter, r *http.Request) {
 		data := handleData(r.URL.Path[len("/coda/"):])
 		code, _ := codabar.Encode(data)
