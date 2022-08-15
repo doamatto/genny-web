@@ -1,5 +1,5 @@
 ## Genny for Web
-**For the macOS app, [head here &rarr;](https://github.com/doamatto/genny)**
+**For the macOS app, [head here &rarr;](https://github.com/doamatto/genny)** (will be ready soon™)
 
 Genny is a simple barcode generator. It currently supports:
   - Aztec
